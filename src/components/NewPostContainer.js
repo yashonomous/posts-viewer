@@ -18,8 +18,9 @@ function NewPostContainer() {
       </div>
       <div className="bg-[#E4E5EB] h-[1px]"></div>
       <div className="flex-1 flex">
-        <div className="flex-1 flex items-center justify-center bg-[#1A6EDA] rounded-lg text-white text-xl">
-          <span>post</span>
+        <div className="flex-1 flex gap-1 items-center justify-center bg-[#1A6EDA] rounded-lg text-white text-xl">
+          <span>post </span>
+          <span className="text-sm">(does nothing as of now)</span>
         </div>
       </div>
     </div>
