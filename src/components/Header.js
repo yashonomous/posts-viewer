@@ -50,10 +50,10 @@ function Header() {
       <div className="flex items-center basis-[25rem] ">
         <div className="flex flex-1 items-center gap-2 bg-[#F0F2F5] h-10 p-2 rounded-full">
           <SearchRounded />
-          <div className="flex flex-1 h-10 items-stretch rounded-full">
+          <div className="flex flex-1 h-10 items-stretch ">
             {/* TODO: remove close buton from search bar */}
             <input
-              className=" bg-[#F0F2F5] rounded-full outline-none px-2"
+              className=" bg-[#F0F2F5] rounded-full  flex-1 outline-none px-2 "
               type="search"
               value={searchInput}
               onChange={({ target }) => {
@@ -81,29 +81,35 @@ function Header() {
             />
             {searchInput?.length > 0 && !inputBlur && (
               <div className="absolute bg-[rgba(255,255,255,1)] top-12 left-[25%] w-[50%]  items-stretch justify-center flex flex-col rounded-lg">
-                {searchedData?.map((data) => (
-                  <div key={data.id}>
-                    <Link
-                      to={`/posts/${data.id}`}
-                      onMouseDown={(e) => {
-                        // to prevent onblur event
-                        e.preventDefault();
-                      }}
-                    >
-                      <div
-                        className=" p-2 "
-                        onClick={() => {
-                          // set blur to true after clicking
-                          setInputBlur(true);
-                          setSearchInput("");
+                {searchedData?.length > 0 ? (
+                  searchedData?.map((data) => (
+                    <div key={data.id}>
+                      <Link
+                        to={`/posts/${data.id}`}
+                        onMouseDown={(e) => {
+                          // to prevent onblur event
+                          e.preventDefault();
                         }}
                       >
-                        {data.title}
-                      </div>
-                    </Link>
-                    <div className="bg-[#E4E5EB] h-[1px]"></div>
+                        <div
+                          className=" p-2 "
+                          onClick={() => {
+                            // set blur to true after clicking
+                            setInputBlur(true);
+                            setSearchInput("");
+                          }}
+                        >
+                          {data.title}
+                        </div>
+                      </Link>
+                      <div className="bg-[#E4E5EB] h-[1px]"></div>
+                    </div>
+                  ))
+                ) : (
+                  <div classname="mx-5">
+                    <span classname="">no results...</span>
                   </div>
-                ))}
+                )}
               </div>
             )}
           </div>
