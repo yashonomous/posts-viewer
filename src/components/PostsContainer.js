@@ -1,16 +1,25 @@
 import { CircularProgress } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { actionTypes } from "../common/actionTypes";
+import React, { useMemo } from "react";
 import { useStateValue } from "../common/StateProvider";
-import {
-  getObjecIdMapFromObjectsData,
-  getPostCommentsMapFromCommentsData,
-} from "../common/utils";
+import { POSTS_PER_PAGE } from "../common/utils";
 import PostContainer from "./common/PostContainer";
 
-function PostsContainer() {
-  const [{ loading, users, comments, usersMap, posts }, dispatch] =
-    useStateValue();
+function PostsContainer({ currentPage = 1 }) {
+  const [{ loading, users, comments, usersMap, posts }] = useStateValue();
+  // const [currentPostsData, setCurrentPostsData] = useState([]);
+
+  // re-renders both when currentpage changes and state changes.
+  // useEffect(() => {
+  //   let leftIdx = (currentPage - 1) * 10;
+  //   let rightIdx = leftIdx + 10;
+  //   setCurrentPostsData(posts.slice(leftIdx, rightIdx));
+  // }, [currentPage, posts]);
+
+  const currentData = useMemo(() => {
+    let leftIdx = (currentPage - 1) * POSTS_PER_PAGE;
+    let rightIdx = leftIdx + POSTS_PER_PAGE;
+    return posts.slice(leftIdx, rightIdx);
+  }, [currentPage, posts]);
 
   return (
     <>
@@ -24,7 +33,7 @@ function PostsContainer() {
             Object.keys(users).length > 0 &&
             Object.keys(usersMap).length > 0 &&
             Object.keys(comments).length > 0 &&
-            posts.map((post, idx) => {
+            currentData.map((post, idx) => {
               return (
                 <PostContainer
                   key={post.id}

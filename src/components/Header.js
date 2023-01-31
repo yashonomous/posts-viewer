@@ -5,15 +5,13 @@ import {
   NotificationsRounded,
   SearchRounded,
 } from "@mui/icons-material";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../common/StateProvider";
 import useDebounce from "../common/useDebounce";
 
-let i = 0;
-
 function Header() {
-  const [{ posts, users, comments }] = useStateValue();
+  const [{ posts }] = useStateValue();
   const [searchInput, setSearchInput] = useState("");
   const [inputBlur, setInputBlur] = useState(true);
   const [searchedData, setSearchedData] = useState([]);

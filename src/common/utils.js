@@ -36,3 +36,5 @@ export const getPostCommentsMapFromCommentsData = (comments) => {
 export const trimText = (text, len) => {
   return text.length > len ? text.substr(0, len) + "..." : text;
 };
+
+export const POSTS_PER_PAGE = 5;

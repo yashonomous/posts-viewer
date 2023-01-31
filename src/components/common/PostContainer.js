@@ -1,14 +1,11 @@
 import { PersonRounded } from "@mui/icons-material";
-import { Tooltip } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { actionTypes } from "../../common/actionTypes";
 import { useStateValue } from "../../common/StateProvider";
-import { trimText } from "../../common/utils";
 import CommentContainer from "./CommentContainer";
 
 function PostContainer({ postId, title, body, userName }) {
-  const [{ postCommentsMap, postsMap, usersMap }, dispatch] = useStateValue();
+  const [{ postCommentsMap }] = useStateValue();
 
   return (
     <div className="flex flex-col gap-3 bg-white rounded-lg p-3">
