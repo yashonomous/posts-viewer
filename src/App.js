@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { Route, Routes } from "react-router";
 import "./App.css";
 import { actionTypes } from "./common/actionTypes";
@@ -9,7 +9,6 @@ import {
 } from "./common/utils";
 import PostPage from "./components/common/PostPage";
 import Header from "./components/Header";
-import Home from "./components/Home";
 import MainContainer from "./components/MainContainer";
 
 function App() {
@@ -142,9 +141,9 @@ function App() {
     }
   }, []);
 
-  const memoizedHeader = useMemo(() => {
-    return <Header />;
-  }, [posts, users, comments]);
+  // const memoizedHeader = useMemo(() => {
+  //   return <Header />;
+  // }, [posts, users, comments]);
 
   return (
     <div className="flex flex-col w-full h-screen bg-[#F0F2F5]">
